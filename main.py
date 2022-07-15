@@ -1,3 +1,16 @@
+############### Modified Blackjack House Rules #####################
+
+## The deck is unlimited in size. 
+## There are no jokers. 
+## The Jack/Queen/King all count as 10.
+## The the Ace can count as 11 or 1.
+## Use the following list as the deck of cards:
+## cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+## The cards in the list have equal probability of being drawn.
+## Cards are not removed from the deck as they are drawn.
+## The computer is the dealer.
+
+
 import random
 from art import logo
 
@@ -76,13 +89,13 @@ while running == True:
         starting_hands()
         
         player_beginning_score = player_sum()
+        computer_blackjack = computer_cards[0] + computer_cards[1]
         computer_beginning_score = computer_final_sum()
         
         print(f"\nYour cards: {player_cards}, current score: {player_beginning_score}")
         print(f"\nComputer's first card: {computer_cards[0]}")
-        if player_beginning_score == 21 or computer_beginning_score == 21:
+        if player_beginning_score == 21 or computer_blackjack == 21:
             black_jack()
-            running = False
         else:
             deal_pass = True
             while deal_pass == True:
@@ -94,7 +107,6 @@ while running == True:
                     print(f"\nComputer's first card: {computer_cards[0]}")
                     if new_sum > 21:
                         deal_pass = False
-                        running = False
                 else:
                     deal_pass = False
             final_p_sum = player_sum()
