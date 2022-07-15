@@ -53,8 +53,6 @@ def black_jack():
 def win_condition():
     p_score = player_sum()
     c_score = computer_final_sum()
-    print(f"\nYour final hand: {player_cards}, final score: {p_score}")
-    print(f"\nComputer's final hand: {computer_cards}, final score: {c_score}")
     if p_score > 21:
         print("\nYou went over 21. You have lost!")
     elif c_score > 21 and p_score < 21:
@@ -71,7 +69,7 @@ def reset_game():
     computer_cards.clear()
 
 while running == True:
-    replay_game = input("Do you wish to play a game of Blackjack. Type 'y' for yes or 'n' for no: ")
+    replay_game = input("\nDo you wish to play a game of Blackjack. Type 'y' for yes or 'n' for no: ")
     if replay_game == 'y':
         reset_game()
         print(logo)
@@ -95,8 +93,8 @@ while running == True:
                     print(f"\nYour cards: {player_cards}, current score: {new_sum}")
                     print(f"\nComputer's first card: {computer_cards[0]}")
                     if new_sum > 21:
-                        win_condition()
                         deal_pass = False
+                        running = False
                 else:
                     deal_pass = False
             final_p_sum = player_sum()
